@@ -16,16 +16,25 @@ const Drawer = createDrawerNavigator();
 export default function DrawerNavigation() {
   return(
     <Drawer.Navigator screenOptions={{
-       headerShown: false,
+       headerShown: true,
+       drawerIcon: ({}) => (
+        <Entypo name="menu" size={24} color="white" />
+       ),
+       headerStyle: {
+         height: 80,
+         backgroundColor: COLORS.secondary,
+         borderBottomColor: 'transparent',
+        },
        drawerActiveBackgroundColor: COLORS.primary,
        drawerContentStyle:{
          backgroundColor: COLORS.secondary,
        }
        }}>
       <Drawer.Screen 
-      name="Home" 
+      name="Início" 
       component={Home}
       options={{
+        drawerLabel: 'Início',
         drawerActiveTintColor: COLORS.white,
         drawerIcon: ({color, focused}) => (
           <AntDesign name="home" size={24} color={focused ? COLORS.white : color }/>

@@ -1,26 +1,34 @@
 import React, { useState } from "react";
-import { AntDesign } from "@expo/vector-icons";
+import { AntDesign, Ionicons } from "@expo/vector-icons";
 import {
   View,
   Text,
   TouchableOpacity,
   Image,
-  TextInput,
   FlatList,
   ScrollView,
+  StatusBar,
 } from "react-native";
+
+import SubHeader from "../../components/SubHeader";
 
 import { styles } from "./styles";
 import { COLORS } from "../../Theme/COLORS";
 import { data } from "../../data/pizzas";
+import { Search } from "../../components/Search";
 
-export default function screens() {
+export default function Home({ navigation }) {
   const [icon, setIcon] = useState(false);
 
   function RenderProducts({ pizza }) {
     return (
       <View style={styles.containerBanner}>
-        <TouchableOpacity>
+        <StatusBar
+          backgroundColor="transparent"
+          barStyle="light-content"
+          translucent={true}
+        />
+        <TouchableOpacity onPress={() => navigation.navigate("Details", pizza)}>
           <View>
             <Image
               source={pizza.url}
@@ -120,8 +128,12 @@ export default function screens() {
                 <Text style={{ fontSize: 12 }}>{pizza.size}</Text>
               </TouchableOpacity>
 
-              <View>
-                <Text style={{ marginRight: 10, marginTop: 6}}>
+              <View style={{ flexDirection: "row", alignItems: "center" }}>
+                <Text style={{ marginTop: 6, marginRight: 5 }}>
+                  <Ionicons name="stopwatch-outline" size={16} color="black" />
+                </Text>
+
+                <Text style={{ marginRight: 10, marginTop: 6 }}>
                   {pizza.timeMin} - {pizza.timeMax}
                 </Text>
               </View>
@@ -131,20 +143,29 @@ export default function screens() {
       </View>
     );
   }
-
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-        <View style={{width: '100%', height: '100%'}}>
+  function HomeScreen() {
+    return (
+      <View style={styles.container}>
+        <View style={{ width: "100%", height: 150 }}>
           <Image
             style={styles.image}
             source={require("../../assets/10882.png")}
             resizeMode="cover"
           />
-        </View>
         <View style={styles.titleBanner}>
           <Text style={styles.text}>Pegue Uma Fatia</Text>
         </View>
+        </View>
+
+
+        {/* Sub header da aplicação com menus */}
+        <View style={{ width: "100%" }}>
+          <View style={{ justifyContent: "center", alignItems: "center" }}>
+            <Search />
+          </View>
+          <Text style={styles.textProduct}>NOSSO CARDÁPIO</Text>
+        </View>
+        <SubHeader />
 
         <View>
           <Text style={styles.textProduct}>POPULARES</Text>
@@ -156,7 +177,12 @@ export default function screens() {
             keyExtractor={(item) => item.id.toString()}
           />
         </View>
-      </ScrollView>
-    </View>
+      </View>
+    );
+  }
+  return (
+    <ScrollView>
+      <HomeScreen />
+    </ScrollView>
   );
 }

@@ -7,7 +7,9 @@ export const data = [
       nationality: "Brasileira",
       timeMin: 20,
       timeMax: 30,
-      size: "Média"
+      size: "Média",
+      price: 45.90,
+      description: "Promoção tradicional imperdível: pizza grande (meia bacon e meia bauru), com brinde de uma bebida (guarana 1,5 l ) e 1 pizza broto de chocolate para sobremesa"
     },
     {
       id: 2,
@@ -17,7 +19,9 @@ export const data = [
       nationality: "Italiana",
       timeMin: 10,
       timeMax: 20,
-      size: "Broto"
+      size: "Broto",
+      price: 49.90,
+      description: "Promoção tradicional imperdível: pizza grande (meia bacon e meia bauru), com brinde de uma bebida (guarana 1,5 l ) e 1 pizza broto de chocolate para sobremesa"
     },
     {
       id: 3,
@@ -27,7 +31,9 @@ export const data = [
       nationality: "Italiana",
       timeMin: 25,
       timeMax: 35,
-      size: "Giga"
+      size: "Giga",
+      price: 32.90,
+      description: "Promoção tradicional imperdível: pizza grande (meia bacon e meia bauru), com brinde de uma bebida (guarana 1,5 l ) e 1 pizza broto de chocolate para sobremesa"
     },
   ];
 

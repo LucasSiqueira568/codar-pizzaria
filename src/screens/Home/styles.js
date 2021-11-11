@@ -7,12 +7,12 @@ export const styles = StyleSheet.create({
   },
   image: {
     width: '100%',
-    height: '30%',
+    height: '100%',
     position: 'relative',
   },
   titleBanner: {
     position: 'absolute',
-    top: '10%',
+    bottom: '40%',
     left: 20,
   },
   text: {
@@ -33,7 +33,7 @@ export const styles = StyleSheet.create({
     width: 240,
     height: 220,
     backgroundColor: COLORS.white,
-    marginBottom: 10,
+    marginBottom: 15,
     marginLeft: 15,
     borderRadius: 10,
     shadowColor: "#000",

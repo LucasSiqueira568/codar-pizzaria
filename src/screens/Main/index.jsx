@@ -1,7 +1,8 @@
 import React from 'react';
 import Signin from '../Signin'
-import Home from '../Home'
+import Signup from '../Signup'
 import WellCome from '../WellCome'
+import Details from '../Details'
 
 import DrawerNavigation from '../DrawerNavigation'
 
@@ -17,6 +18,8 @@ export default function Main() {
          <Stack.Navigator initialRouteName="WellCome" screenOptions={{ headerShown: false}}>
              <Stack.Screen name="WellCome" component={WellCome} />
              <Stack.Screen name="Signin" component={Signin} />
+             <Stack.Screen name="Signup" component={Signup} />
+             <Stack.Screen name="Details" component={Details} />
              <Stack.Screen name="Home" component={DrawerNavigation} />
          </Stack.Navigator>
         </NavigationContainer>
