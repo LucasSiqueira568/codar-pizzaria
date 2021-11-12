@@ -21,7 +21,5 @@ export const styles = StyleSheet.create({
       justifyContent: 'center',
       marginLeft: 15
   },
-  text: {
-      color: COLORS.white
-  }
+
 });

@@ -52,7 +52,7 @@ export default function Details({ route, navigation }){
             <View style={styles.containerImage}>
                 <Image 
                 style={styles.image}
-                source={pizza.url}
+                source={{uri: pizza.image}}
                 resizeMode="contain"
                 />
             </View>
@@ -95,7 +95,7 @@ export default function Details({ route, navigation }){
                 <View style={styles.descriptionProduct}>
                     <Text 
                     onChangeText={() => {RenderModal}}
-                    style={styles.descriptionText}>{pizza.description.slice(0, 450)}</Text>
+                    style={styles.descriptionText}>{pizza.desc.slice(0, 450)}</Text>
                 </View>
                 
                 {/* Botão para adicionar o produto ao carrinho */}

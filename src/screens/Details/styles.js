@@ -26,9 +26,10 @@ export const styles = StyleSheet.create({
       height: '30%',
       alignItems: 'center',
       justifyContent: 'flex-start',
+      backgroundColor: COLORS.textGreyColor
     },
     image: {
-        width: '90%',
+        width: '100%',
         height: '100%',
         borderRadius: 20,
     },
@@ -40,7 +41,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginTop: 10
+    marginTop: 10,
   },
   name: {
       fontSize: 23,
@@ -52,8 +53,10 @@ export const styles = StyleSheet.create({
     width: 130,
     flexDirection: 'row',
     justifyContent: 'space-between',
+    alignItems: 'center',
     marginRight: 15,
-    marginTop: 20
+    marginTop: 20,
+    paddingBottom: 15
   },
   button: {
       width: 40,

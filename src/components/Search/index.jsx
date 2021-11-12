@@ -4,7 +4,6 @@ import { Feather } from '@expo/vector-icons';
 
 import {
   View,
-  Text,
   TextInput,
   TouchableOpacity
 } from 'react-native';
@@ -22,7 +21,7 @@ export function Search(){
             />
         </View>
         <View style={styles.containerIcon}>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={() => {}}>
             <Feather name="search" size={30} color={COLORS.red50} />
             </TouchableOpacity>
         </View>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect} from "react";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import {
   View,
@@ -14,24 +14,38 @@ import SubHeader from "../../components/SubHeader";
 
 import { styles } from "./styles";
 import { COLORS } from "../../Theme/COLORS";
-import { data } from "../../data/pizzas";
-import { Search } from "../../components/Search";
+
+import api from '../../service/api_pizzas'
+
+import Search  from "../../components/Search";
+import Liked from "../../components/Liked";
+import Banner from "../../components/Banner";
+
 
 export default function Home({ navigation }) {
-  const [icon, setIcon] = useState(false);
+  const [produto, setProduto] = useState([]);
 
-  function RenderProducts({ pizza }) {
+  // função que trás os dados da api
+  useEffect(() => {
+    api.get("pizza/").then(({data}) => {
+      setProduto(data);
+    })
+  }, [])
+
+
+
+  function CardProduct({ pizza }) {
     return (
       <View style={styles.containerBanner}>
         <StatusBar
           backgroundColor="transparent"
-          barStyle="light-content"
+          barStyle="dark-content"
           translucent={true}
         />
         <TouchableOpacity onPress={() => navigation.navigate("Details", pizza)}>
           <View>
             <Image
-              source={pizza.url}
+              source={{uri: pizza.image}}
               style={{
                 width: "100%",
                 height: 100,
@@ -52,24 +66,9 @@ export default function Home({ navigation }) {
             >
               <Text style={styles.nameProduct}>{pizza.name}</Text>
               <TouchableOpacity
-                onPress={() => setIcon(!icon)}
                 style={{ marginLeft: 10, marginRight: 10 }}
               >
-                {icon ? (
-                  <AntDesign
-                    name="heart"
-                    size={22}
-                    color={COLORS.red}
-                    style={{ marginTop: 10 }}
-                  />
-                ) : (
-                  <AntDesign
-                    name="hearto"
-                    size={22}
-                    color={COLORS.red}
-                    style={{ marginTop: 10 }}
-                  />
-                )}
+                <Liked />
               </TouchableOpacity>
             </View>
 
@@ -88,7 +87,7 @@ export default function Home({ navigation }) {
               />
 
               <Text style={{ fontSize: 12, marginLeft: 10 }}>
-                {pizza.avaliations} Avaliações
+                {produto.desc} Avaliações
               </Text>
             </View>
 
@@ -103,7 +102,7 @@ export default function Home({ navigation }) {
               <TouchableOpacity
                 style={{
                   backgroundColor: COLORS.secondary,
-                  width: 70,
+                  width: 100,
                   height: 24,
                   marginLeft: 10,
                   marginTop: 10,
@@ -112,20 +111,7 @@ export default function Home({ navigation }) {
                   justifyContent: "center",
                 }}
               >
-                <Text style={{ fontSize: 12 }}>{pizza.nationality}</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={{
-                  backgroundColor: COLORS.secondary,
-                  width: 70,
-                  height: 24,
-                  marginTop: 10,
-                  borderRadius: 20,
-                  alignItems: "center",
-                  justifyContent: "center",
-                }}
-              >
-                <Text style={{ fontSize: 12 }}>{pizza.size}</Text>
+                <Text style={{ fontSize: 16 }}>R$ {pizza.price.replace('.', ',')}</Text>
               </TouchableOpacity>
 
               <View style={{ flexDirection: "row", alignItems: "center" }}>
@@ -133,9 +119,9 @@ export default function Home({ navigation }) {
                   <Ionicons name="stopwatch-outline" size={16} color="black" />
                 </Text>
 
-                <Text style={{ marginRight: 10, marginTop: 6 }}>
-                  {pizza.timeMin} - {pizza.timeMax}
-                </Text>
+                {/* <Text style={{ marginRight: 10, marginTop: 6 }}>
+                  {pizza.price}
+                </Text> */}
               </View>
             </View>
           </View>
@@ -143,21 +129,11 @@ export default function Home({ navigation }) {
       </View>
     );
   }
-  function HomeScreen() {
+  const  HomeScreen = () => {
     return (
       <View style={styles.container}>
-        <View style={{ width: "100%", height: 150 }}>
-          <Image
-            style={styles.image}
-            source={require("../../assets/10882.png")}
-            resizeMode="cover"
-          />
-        <View style={styles.titleBanner}>
-          <Text style={styles.text}>Pegue Uma Fatia</Text>
-        </View>
-        </View>
-
-
+        <Banner />
+      
         {/* Sub header da aplicação com menus */}
         <View style={{ width: "100%" }}>
           <View style={{ justifyContent: "center", alignItems: "center" }}>
@@ -170,19 +146,24 @@ export default function Home({ navigation }) {
         <View>
           <Text style={styles.textProduct}>POPULARES</Text>
           <FlatList
-            data={data}
+            horizontal
+            showsHorizontalScrollIndicator={false}
+            data={produto}
             renderItem={({ item }) => {
-              return <RenderProducts pizza={item} />;
+              return <CardProduct pizza={item} />;
             }}
-            keyExtractor={(item) => item.id.toString()}
+            keyExtractor={(item) => item.id}
           />
         </View>
       </View>
     );
   }
+
   return (
     <ScrollView>
+      
       <HomeScreen />
-    </ScrollView>
+
+     </ScrollView>
   );
 }

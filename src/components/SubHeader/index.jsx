@@ -25,13 +25,13 @@ export default function SubHeader() {
         >
             {
             menuSelected == pizza.id &&
-              <Text style={[styles.text, {color: COLORS.white}]}>
+              <Text style={{color: COLORS.white}}>
                 {pizza.name}
               </Text>
             }
 
             {menuSelected != pizza.id &&
-              <Text style={[styles.text, {color: COLORS.black}]}>
+              <Text style={{color: COLORS.black}}>
                 {pizza.name}
                 </Text>
             }
