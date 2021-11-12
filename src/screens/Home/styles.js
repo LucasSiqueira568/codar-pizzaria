@@ -5,11 +5,6 @@ export const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
-  image: {
-    width: '100%',
-    height: '100%',
-    position: 'relative',
-  },
   titleBanner: {
     position: 'absolute',
     bottom: '40%',
@@ -28,7 +23,6 @@ export const styles = StyleSheet.create({
     marginBottom: 15,
     marginTop: 10
   },
-
   containerBanner: {
     width: 240,
     height: 220,
