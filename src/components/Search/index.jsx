@@ -10,7 +10,7 @@ import {
 
 import { styles } from './styles';
 
-export function Search(){
+export default function Search(){
   return (
     <View style={styles.container}>
         <View style={styles.containerInput}>
